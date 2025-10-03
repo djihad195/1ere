@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>دروس السنة الثانية طب الأسنان</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-2: rgba(255,255,255,0.08);
+      --ink: #e2e8f0;
+      --muted: #94a3b8;
+      --primary: #22d3ee;
+      --accent: #8b5cf6;
+      --neon: #38bdf8;
+      --radius: 18px;
+      --shadow: 0 0 18px rgba(34,211,238,0.5);
+      --transition: all .3s ease;
+      --max-width: 900px;
+    }
+    body {
+      margin: 0;
+      font-family: "Noto Naskh Arabic UI", system-ui, sans-serif;
+      background: linear-gradient(135deg,#0f172a,#020617);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header, main, footer {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(2,6,23,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+    }
+    header h1 {
+      font-size: 20px;
+      margin: 0;
+      font-weight: 800;
+      color: var(--neon);
+      text-shadow: 0 0 8px var(--neon);
+      text-align: center;
+      flex: 1;
+    }
+    #themeToggle {
+      padding: 6px 12px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: linear-gradient(135deg,var(--primary),var(--accent));
+      color: #fff;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      margin-left: 10px;
+    }
+    #themeToggle:hover { transform: scale(1.05); }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px auto;
+      justify-content: center;
+      padding: 0 10px;
+    }
+    .tab-btn {
+      flex: 1 1 auto;
+      min-width: 120px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 999px;
+      background: var(--bg-2);
+      color: var(--ink);
+      font-weight: bold;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .tab-btn:hover { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+    .tab-btn.active { background: var(--primary); color: #0f172a; box-shadow: 0 0 14px var(--primary); }
+    .panel { display: none; animation: fade .4s ease; }
+    .panel.active { display: block; }
+    @keyframes fade { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 15px;
+      padding: 0 10px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 0 15px rgba(34,211,238,0.2);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 0 20px var(--accent); }
+    .card h3 { margin: 0; font-size: 17px; color: var(--neon); text-shadow: 0 0 4px var(--neon); }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .actions { display: flex; gap: 8px; margin-top: auto; }
+    .btn {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: var(--transition);
+      font-size: 13px;
+    }
+    .btn.primary { background: var(--primary); color: #0f172a; box-shadow: 0 0 8px var(--primary); }
+    .btn.ghost { background: var(--accent); color: #fff; }
+    .btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: var(--shadow); }
+    footer { text-align: center; padding: 20px; margin-top: 30px; color: var(--muted); font-size: 13px; }
+    footer strong { color: var(--neon); text-shadow: 0 0 4px var(--neon); }
+
+    /* تحسين العرض على الهواتف */
+    @media (max-width: 600px) {
+      header h1 { font-size: 16px; }
+      .tab-btn { flex: 1 1 100%; min-width: unset; font-size: 14px; }
+      .card { padding: 15px; }
+      .btn { font-size: 12px; padding: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> دروس السنة الاولى طب الأسنان</h1>
+    <button id="themeToggle">⚡</button>
+  </header>
+
+  <main class="container">
+    <nav id="tabs" class="tabs"></nav>
+    <section id="panels"></section>
+  </main>
+
+  <footer>
+    <p>مصمم من طرف <strong>BENABBES DJIHAD</strong> 🌌</p>
+  </footer>
+
+  <script>
+    const subjects = [
+      {id:'Biochimie', name:'Biochimie', lessons:[
+      
+      ]},
+      {id:'Biophy', name:'Biophy', lessons:[
+
+    
+      ]},
+      {id:'Biostat', name:'Biostat', lessons:[
+        
+      ]},
+      {id:'anatomie-h', name:'Anatomie Humaine', lessons:[
+    
+      ]},
+      {id:'chimie', name:' chimie', lessons:[
+
+    ]},
+      {id:'physiologie', name:'physiologie', lessons:[
+     
+{title:'Cours 01 ', desc:'Membrane Transport', pdf:'https://drive.google.com/file/d//preview1Vy8eK8plikyZD3HrBaDsyAoux00gPoQ0'},
+
+    ]},
+      {id:'Histologie', name:'Histologie', lessons:[
+
+    ]},
+      {id:'Embryologie', name:'Embryologie', lessons:[
+
+    ]},
+      {id:'Cytologie', name:'Cytologie', lessons:[
+
+    ]},
+      {id:'physique', name:'physique', lessons:[
+
+    ]},
+      {id:'ssh', name:'ssh', lessons:[
+
+    ]},
+      {id:'FranCais', name:'FranCais', lessons:[
+
+    ]},
+      {id:'Englais', name:'Englais', lessons:[
+
+    ]}
+    ];
+
+    const tabs = document.getElementById('tabs');
+    const panels = document.getElementById('panels');
+
+    subjects.forEach((s,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn';
+      btn.textContent = s.name;
+      btn.onclick = ()=> activate(s.id);
+      tabs.appendChild(btn);
+
+      const panel = document.createElement('section');
+      panel.className = 'panel';
+      panel.id = s.id;
+      let cards = '';
+      s.lessons.forEach(lesson=>{
+        cards += `<div class='card'>
+          <h3>${lesson.title}</h3>
+          <p>${lesson.desc}</p>
+          <div class='actions'>
+            <a class='btn primary' href='${lesson.pdf}' target='_blank'>👁 مشاهدة</a>
+            <a class='btn ghost' href='${lesson.pdf}' download>⬇ تحميل</a>
+          </div>
+        </div>`;
+      });
+      panel.innerHTML = `<h2>${s.name}</h2><div class='grid'>${cards}</div>`;
+      panels.appendChild(panel);
+      if(i===0) activate(s.id);
+    });
+
+    function activate(id){
+      document.querySelectorAll('.tab-btn').forEach(b=> b.classList.toggle('active', b.textContent===subjects.find(s=>s.id===id).name));
+      document.querySelectorAll('.panel').forEach(p=> p.classList.toggle('active', p.id===id));
+    }
+
+    document.getElementById('themeToggle').onclick=()=>{
+      document.body.classList.toggle('dark');
+    };
+  </script>
+</body>
+</html>
